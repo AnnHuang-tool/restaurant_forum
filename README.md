@@ -12,9 +12,13 @@
 
 帳號 1：
 email: root@example.com
+
 password: 12345678
+
+
 帳號 2：
 email: user1@example.com
+
 password: 12345678
 
 
@@ -58,29 +62,49 @@ password: 12345678
 <安裝需求>
 
 git : v2.27.0.windows.1
+
 nvm : v1.1.7
+
 node : v10.15.0
+
 npm : v6.4.1
+
 nodemon : v2.0.4
 
 <npm套件>
 
 express : v4.17.1
+
 express-handlebars : v5.1.0
+
 body-parser : v1.19.0
+
 method-override : v3.0.0
+
 bcryptjs : v2.4.3
+
 connect-flash : v0.1.1
+
 dotenv : v8.2.0
+
 express-session : v1.17.1
+
 passport : v0.4.1
+
 passport-local : v1.0.0
+
 faker : v5.1.0
+
 imgur-node-api : v0.1.0
+
 multer : v1.4.2
+
 mysql2 : v2.1.0
+
 pg : v8.3.3
+
 sequelize : v6.3.5
+
 sequelize-cli : v6.2.0
 
 
