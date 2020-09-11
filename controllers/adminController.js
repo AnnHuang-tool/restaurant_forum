@@ -1,8 +1,10 @@
+
 const imgur = require('imgur-node-api')
 const IMGUR_CLIENT_ID = 'c26a5187596e138'
 const fs = require('fs')
 const db = require('../models')
 const Restaurant = db.Restaurant
+const User = db.User
 
 const adminController = {
   getRestaurants: (req, res) => {
@@ -120,6 +122,35 @@ const adminController = {
           })
       })
   },
+  getUsers: (req, res) => {
+    return User.findAll({ raw: true }).then(users => {
+      return res.render('admin/users', { users: users })
+    })
+  },
+  putUsers: (req, res) => {
+    return User.findByPk(req.params.id)
+      .then((user) => {
+        if (user.email === 'root@example.com') {
+          req.flash('error_messages', "此帳號權限無法更改")
+          return res.redirect('back')
+        }
+        if (user.isAdmin) {
+          user.update({ isAdmin: 0, })
+            .then((user) => {
+              console.log(user.isAdmin)
+              req.flash("success_messages", "user was successfully to update");
+              return res.redirect("/admin/users");
+            })
+        } else {
+          user.update({ isAdmin: 1, })
+            .then((user) => {
+              console.log(user.isAdmin)
+              req.flash("success_messages", "user was successfully to update");
+              return res.redirect("/admin/users");
+            })
+        }
+      })
+  }
 }
 
 module.exports = adminController
