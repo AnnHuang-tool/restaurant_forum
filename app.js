@@ -1,3 +1,4 @@
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 const express = require('express')
 const db = require('./models') // 引入資料庫
 const bodyParser = require('body-parser') // add this
