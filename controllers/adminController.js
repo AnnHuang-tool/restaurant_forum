@@ -130,10 +130,10 @@ const adminController = {
   putUsers: (req, res) => {
     return User.findByPk(req.params.id)
       .then((user) => {
-        if (user.email === 'root@example.com') {
-          req.flash('error_messages', "此帳號權限無法更改")
-          return res.redirect('back')
-        }
+        // if (user.email === 'root@example.com') {
+        //   req.flash('error_messages', "此帳號權限無法更改")
+        //   return res.redirect('back')
+        // }
         if (user.isAdmin) {
           user.update({ isAdmin: 0, })
             .then((user) => {
