@@ -35,16 +35,16 @@ module.exports = {
           address: faker.address.streetAddress(),
           opening_hours: '08:00',
           // image: faker.image.imageUrl(),
-          `image: https:// loremflickr.com / 320 / 240 / restaurant, food/? random = ${Math.random() * 100},`
+          image: `https://loremflickr.com/320/240/restaurant,food/?random=${Math.random() * 100}`,
           description: faker.lorem.text(),
-        createdAt: new Date(),
-        updatedAt: new Date()
+          createdAt: new Date(),
+          updatedAt: new Date()
         })
-      ), { });
+      ), {});
   },
 
-down: (queryInterface, Sequelize) => {
-  queryInterface.bulkDelete('Users', null, {});
-  return queryInterface.bulkDelete('Restaurants', null, {});
-}
+  down: (queryInterface, Sequelize) => {
+    queryInterface.bulkDelete('Users', null, {});
+    return queryInterface.bulkDelete('Restaurants', null, {});
+  }
 };
