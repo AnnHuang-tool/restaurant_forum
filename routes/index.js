@@ -3,6 +3,7 @@ const upload = multer({ dest: 'temp/' })
 const restController = require('../controllers/restController.js')
 const adminController = require('../controllers/adminController.js') // 加入這行
 const userController = require('../controllers/userController.js')
+const categoryController = require('../controllers/categoryController.js')
 module.exports = (app, passport) => {
   const authenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -41,6 +42,9 @@ module.exports = (app, passport) => {
 
   app.get('/signup', userController.signUpPage)
   app.post('/signup', userController.signUp)
+  // 新增瀏覽分類的路由
+  app.get('/admin/categories', authenticatedAdmin, categoryController.getCategories)
+
   // 建立使用者登入機制
   app.get('/signin', userController.signInPage)
   app.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.signIn)
