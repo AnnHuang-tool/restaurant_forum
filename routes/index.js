@@ -40,6 +40,9 @@ module.exports = (app, passport) => {
   app.put('/admin/users/:id', authenticatedAdmin, adminController.putUsers)
 
 
+  // 前台
+  app.get('/restaurants/:id', authenticated, restController.getRestaurant)
+
   app.get('/signup', userController.signUpPage)
   app.post('/signup', userController.signUp)
   // 新增瀏覽分類的路由
