@@ -44,7 +44,7 @@ module.exports = (app, passport) => {
   app.post('/signup', userController.signUp)
   // 新增瀏覽分類的路由
   app.get('/admin/categories', authenticatedAdmin, categoryController.getCategories)
-
+  app.post('/admin/categories', authenticatedAdmin, categoryController.postCategory)
   // 建立使用者登入機制
   app.get('/signin', userController.signInPage)
   app.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.signIn)
