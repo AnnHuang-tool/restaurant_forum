@@ -3,6 +3,7 @@ const imgur = require('imgur-node-api')
 const IMGUR_CLIENT_ID = 'c26a5187596e138'
 const fs = require('fs')
 const db = require('../models')
+
 const Restaurant = db.Restaurant
 const User = db.User
 const Category = db.Category
@@ -14,9 +15,9 @@ const adminController = {
       nest: true,
       include: [Category]
     }).then(restaurants => {
+      // console.log(restaurants)
       return res.render('admin/restaurants', { restaurants: restaurants })
     })
-
   },
   // 新增這個
   createRestaurant: (req, res) => {
@@ -61,9 +62,15 @@ const adminController = {
     }
   },
 
-  getRestaurant: (req, res, callback) => {
-    return Restaurant.findByPk(req.params.id, { include: [Category] }).then(restaurant => {
-      callback({ restaurant: restaurant.toJSON() })
+  getRestaurant: (req, res) => {
+    return Restaurant.findByPk(req.params.id, {
+      raw: true,
+      nest: true,
+      include: [Category]
+    }).then(restaurant => {
+      return res.render('admin/restaurant', {
+        restaurant: restaurant
+      })
     })
   },
 
