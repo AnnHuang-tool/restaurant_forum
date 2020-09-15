@@ -4,6 +4,7 @@ const restController = require('../controllers/restController.js')
 const adminController = require('../controllers/adminController.js') // 加入這行
 const userController = require('../controllers/userController.js')
 const categoryController = require('../controllers/categoryController.js')
+const commentController = require('../controllers/commentController.js')
 module.exports = (app, passport) => {
   const authenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -28,6 +29,8 @@ module.exports = (app, passport) => {
   // 連到 /admin 頁面就轉到 /admin/restaurants
   app.get('/admin', authenticatedAdmin, (req, res) => res.redirect('/admin/restaurants'))
 
+
+
   // 在 /admin/restaurants 底下則交給 adminController.getRestaurants 處理
   app.get('/admin/restaurants', authenticatedAdmin, adminController.getRestaurants)
   app.get('/admin/restaurants/create', authenticatedAdmin, adminController.createRestaurant)
@@ -42,6 +45,8 @@ module.exports = (app, passport) => {
 
   // 前台
   app.get('/restaurants/:id', authenticated, restController.getRestaurant)
+  // 評論
+  app.post('/comments', authenticated, commentController.postComment)
 
   app.get('/signup', userController.signUpPage)
   app.post('/signup', userController.signUp)
