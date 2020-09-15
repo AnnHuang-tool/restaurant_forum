@@ -13,14 +13,38 @@
   <section class="content-container">
     <h4 class="content-name">{{user.name}}</h4>
     <h6 class="content-email">{{user.email}}</h6>
+    <h6class="commentNum">{{user.Comments.length}} 已評論餐廳</h6>
 
-    <button type="Edit" class="btn btn-light">
-      <a href="/users/{{user.id}}/edit">
-        Edit
-      </a>
+      <button type="Edit" class="btn btn-light">
+        <a href="/users/{{user.id}}/edit">
+          Edit
+        </a>
 
-    </button>
+      </button>
 
   </section>
 
+
+
+
 </main>
+
+
+</div>
+</br>
+
+<div class="card">
+  <div class="card-header">
+    {{user.Comments.length}}已評論餐廳
+  </div>
+  <div class="card-body row">
+    {{#each user.Comments}}
+
+    <div class="col-2">
+      <a href="/restaurants/{{this.Restaurant.id}}">
+        <img class="card-img-top" src="{{this.Restaurant.image}}" alt="Card image cap">
+      </a>
+    </div>
+
+    {{/each}}
+  </div>
