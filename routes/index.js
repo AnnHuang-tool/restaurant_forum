@@ -75,6 +75,9 @@ module.exports = (app, passport) => {
   // addLike
   app.post('/like/:restaurantId', authenticated, userController.addLike)
   app.delete('/like/:restaurantId', authenticated, userController.removeLike)
+  // 追蹤
+  app.post('/following/:userId', authenticated, userController.addFollowing)
+  app.delete('/following/:userId', authenticated, userController.removeFollowing)
 
   // 建立使用者登入機制
   app.get('/signin', userController.signInPage)
