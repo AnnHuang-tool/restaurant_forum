@@ -62,6 +62,7 @@ module.exports = (app, passport) => {
   app.put('/admin/categories/:id', authenticatedAdmin, categoryController.putCategory)
   app.delete('/admin/categories/:id', authenticatedAdmin, categoryController.deleteCategory)
 
+  app.get('/users/top', authenticated, userController.getTopUser)
   // 新增使用者路由
   app.get('/users/:id', authenticatedAdmin, userController.getUser)
   app.get('/users/:id/edit', authenticated, userController.editUser)
