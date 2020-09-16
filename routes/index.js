@@ -45,7 +45,10 @@ module.exports = (app, passport) => {
 
   // 前台
   app.get('/restaurants/feeds', authenticated, restController.getFeeds)
+
   app.get('/restaurants/:id', authenticated, restController.getRestaurant)
+  app.get('/restaurants/:id/dashboard', authenticated, restController.getDashboard)
+
   // 評論
   app.post('/comments', authenticated, commentController.postComment)
   app.delete('/comments/:id', authenticatedAdmin, commentController.deleteComment)
