@@ -1,4 +1,5 @@
 const db = require('../models')
+const restaurant = require('../models/restaurant')
 const Restaurant = db.Restaurant
 const Category = db.Category
 const Comment = db.Comment
@@ -27,9 +28,11 @@ let restController = {
       const data = result.rows.map(r => ({
         ...r.dataValues,
         description: r.dataValues.description.substring(0, 50),
+        // isFavorited: req.user.FavoritedRestaurants.map(restaurant => restaurant.id).includes(r.id),
+        // isLiked: req.user.LikedRestaurants.map(restaurant => restaurant.id).includes(r.id),
+        categoryName: r.dataValues.Category.name,
         isFavorited: req.user.FavoritedRestaurants.map(d => d.id).includes(r.id),
-        isLiked: req.user.LikedRestaurants.map(d => d.id).includes(r.id),
-        categoryName: r.dataValues.Category.name
+        isLiked: req.user.LikedRestaurants.map(d => d.id).includes(r.id)
       }))
       Category.findAll({
         raw: true,
@@ -52,15 +55,18 @@ let restController = {
       include: [
         Category,
         { model: User, as: 'FavoritedUsers' },
+        { model: User, as: 'LikedUsers' },
         { model: Comment, include: [User] }
       ]
     }).then(restaurant => {
       restaurant.increment('viewCount')
         .then(restaurant => {
-          const isFavorited = restaurant.FavoritedUsers.map(d => d.id).includes(req.user.id)
+          const isFavorited = restaurant.FavoritedUsers.map(user => user.id).includes(req.user.id)
+          const isLiked = restaurant.LikedUsers.map(user => user.id).includes(req.user.id)
           return res.render('restaurant', {
             restaurant: restaurant.toJSON(),
-            isFavorited: isFavorited
+            isFavorited: isFavorited,
+            isLiked: isLiked,
           })
         })
     })

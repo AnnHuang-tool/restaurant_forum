@@ -147,8 +147,8 @@ const userController = {
         RestaurantId: req.params.restaurantId
       }
     })
-      .then((favorite) => {
-        favorite.destroy()
+      .then((like) => {
+        like.destroy()
           .then((restaurant) => {
             return res.redirect('back')
           })
