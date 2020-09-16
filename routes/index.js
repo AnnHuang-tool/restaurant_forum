@@ -67,6 +67,10 @@ module.exports = (app, passport) => {
   app.get('/users/:id/edit', authenticated, userController.editUser)
   app.put('/users/:id', authenticated, upload.single('image'), userController.putUser)
 
+  // addFavorite
+  app.post('/favorite/:restaurantId', authenticated, userController.addFavorite)
+  app.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
+
   // 建立使用者登入機制
   app.get('/signin', userController.signInPage)
   app.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.signIn)
