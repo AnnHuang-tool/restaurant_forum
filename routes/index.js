@@ -43,8 +43,10 @@ module.exports = (app, passport) => {
   app.put('/admin/users/:id', authenticatedAdmin, adminController.putUsers)
 
 
-  // 前台
+  // 前台.最新動態
   app.get('/restaurants/feeds', authenticated, restController.getFeeds)
+  //人氣餐廳
+  app.get('/restaurants/top', authenticated, restController.getTopRestaurant)
 
   app.get('/restaurants/:id', authenticated, restController.getRestaurant)
   app.get('/restaurants/:id/dashboard', authenticated, restController.getDashboard)
