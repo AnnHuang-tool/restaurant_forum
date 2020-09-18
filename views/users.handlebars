@@ -46,8 +46,8 @@
     {{#each user.Followings}}
 
     <div class="col-2">
-      <a href="/restaurants/{{this.Restaurant.id}}">
-        <img class="card-img-top" src="{{this.Restaurant.image}}" alt="Card image cap">
+      <a href="/users/{{this.id}}">
+        <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
       </a>
     </div>
 
@@ -77,8 +77,8 @@
         {{#each user.Followers}}
 
         <div class="col-2">
-          <a href="/restaurants/{{this.Restaurant.id}}">
-            <img class="card-img-top" src="{{this.Restaurant.image}}" alt="Card image cap">
+          <a href="/users/{{this.id}}">
+            <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
           </a>
         </div>
 
@@ -86,14 +86,14 @@
 
 
         <div class="card-header">
-          {{restaurant.FavoritedUsers.length}}收藏的餐廳
+          {{user.FavoritedRestaurants.length}}收藏的餐廳
         </div>
         <div class="card-body row">
           {{#each user.FavoritedRestaurants}}
 
           <div class="col-2">
-            <a href="/restaurants/{{this.Restaurant.id}}">
-              <img class="card-img-top" src="{{this.Restaurant.image}}" alt="Card image cap">
+            <a href="/restaurants/{{this.id}}">
+              <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
             </a>
           </div>
 
