@@ -45,12 +45,11 @@ module.exports = {
           tel: faker.phone.phoneNumber(),
           address: faker.address.streetAddress(),
           opening_hours: '08:00',
-          // image: faker.image.imageUrl(),
           image: `https://loremflickr.com/320/240/restaurant,food/?random=${Math.random() * 100}`,
           description: faker.lorem.text(),
           createdAt: new Date(),
           updatedAt: new Date(),
-          CategoryId: Math.floor(Math.random() * 5) + 1 // 加上這行
+          CategoryId: Math.floor(Math.random() * 5) + 1
         })
       ), {});
   },
@@ -61,3 +60,25 @@ module.exports = {
     return queryInterface.bulkDelete('Restaurants', null, {});
   }
 };
+
+
+
+
+
+//   return queryInterface.bulkInsert('Restaurants',
+//     Array.from({ length: 50 }).map(d =>
+//       ({
+//         name: faker.name.findName(),
+//         tel: faker.phone.phoneNumber(),
+//         address: faker.address.streetAddress(),
+//         opening_hours: '08:00',
+//         // image: faker.image.imageUrl(),
+//         image: `https://loremflickr.com/320/240/restaurant,food/?random=${Math.random() * 100}`,
+//         description: faker.lorem.text(),
+//         createdAt: new Date(),
+//         updatedAt: new Date(),
+//         CategoryId: Math.floor(Math.random() * 5) + 1 // 加上這行
+//       })
+//     ), {});
+// },
+
