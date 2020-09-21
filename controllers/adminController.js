@@ -1,4 +1,6 @@
 
+// ..
+const adminService = require('../services/adminService.js')
 const imgur = require('imgur-node-api')
 const IMGUR_CLIENT_ID = 'c26a5187596e138'
 const fs = require('fs')
@@ -8,8 +10,7 @@ const Restaurant = db.Restaurant
 const User = db.User
 const Category = db.Category
 
-// ..
-const adminService = require('../services/adminService.js')
+
 
 const adminController = {
   getRestaurants: (req, res) => {
@@ -70,7 +71,7 @@ const adminController = {
   },
 
   getRestaurant: (req, res) => {
-    adminService.getRestaurants(req, res, (data) => {
+    adminService.getRestaurant(req, res, (data) => {
       return res.render('admin/restaurant', data)
     })
   },
