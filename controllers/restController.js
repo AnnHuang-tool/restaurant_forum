@@ -62,8 +62,8 @@ let restController = {
     }).then(restaurant => {
       restaurant.increment('viewCount')
         .then(restaurant => {
-          const isFavorited = restaurant.FavoritedUsers.map(d => d.id).includes(req.user.id)
-          const isLiked = restaurant.LikedUsers.map(d => d.id).includes(req.user.id)
+          const isFavorited = restaurant.FavoritedUsers.map(user => user.id).includes(req.user.id)
+          const isLiked = restaurant.LikedUsers.map(user => user.id).includes(req.user.id)
           return res.render('restaurant', {
             restaurant: restaurant.toJSON(),
             isFavorited: isFavorited,

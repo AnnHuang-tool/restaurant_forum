@@ -1,5 +1,5 @@
 const db = require('../models')
-const Restaurant = db.Restaurant
+// const Restaurant = db.Restaurant
 const Category = db.Category
 
 const categoryService = {
@@ -9,9 +9,13 @@ const categoryService = {
       nest: true
     }).then(categories => {
       if (req.params.id) {
-        Category.findByPk(req.params.id)
+        Category.findByPk(req.params.id, {
+          raw: true,
+          nest: true,
+        })
           .then((category) => {
-            return res.render('admin/categories', { categories: categories, category: category })
+
+            callback({ categories: categories, category: category })
           })
       } else {
         callback({ categories: categories })
@@ -39,7 +43,6 @@ const categoryService = {
       callback({ status: 'error', message: 'name didn\'t exist' })
     } else {
       return Category.findByPk(req.params.id)
-
         .then((category) => {
           category.update(req.body)
             .then((category) => {
